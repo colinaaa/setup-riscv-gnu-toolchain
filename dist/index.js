@@ -275,11 +275,16 @@ const core = __importStar(__webpack_require__(186));
 const installer_1 = __webpack_require__(480);
 const replacer_1 = __webpack_require__(396);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    const date = core.getInput('release-date', { required: false });
-    const toolPath = yield installer_1.getToolchain(date);
-    const binPath = yield replacer_1.replacer(`${toolPath}/bin`);
-    core.info(`Adding ${binPath} to path`);
-    core.addPath(binPath);
+    try {
+        const date = core.getInput('release-date', { required: false });
+        const toolPath = yield installer_1.getToolchain(date);
+        const binPath = yield replacer_1.replacer(`${toolPath}/bin`);
+        core.info(`Adding ${binPath} to path`);
+        core.addPath(binPath);
+    }
+    catch (error) {
+        core.setFailed(error);
+    }
 });
 run();
 
@@ -2480,9 +2485,9 @@ exports.getToolchain = (date) => __awaiter(void 0, void 0, void 0, function* () 
     const downloadPath = yield tc.downloadTool(`https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64/tarballs/riscv64--glibc--bleeding-edge-${date}.tar.bz2`);
     core_1.info('Extracting...');
     const extractPath = yield tc.extractTar(downloadPath, undefined, [
-        'xz',
+        'x',
         '--strip',
-        '1'
+        '1',
     ]);
     core_1.info('Adding to cache...');
     const path = yield tc.cacheDir(extractPath, 'riscv-gnu-toolchain', date);

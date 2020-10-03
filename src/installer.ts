@@ -19,7 +19,7 @@ export const getToolchain = async (date: string): Promise<string> => {
 
   info('Extracting...')
   const extractPath = await tc.extractTar(downloadPath, undefined, [
-    'xz',
+    'x',
     '--strip',
     '1',
   ])
