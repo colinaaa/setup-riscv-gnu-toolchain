@@ -1,11 +1,11 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Setup riscv-gnu-toolchain'
+description: 'setup riscv toolchain in action'
+author: 'colinaaa'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  release-date: # id of input
+    description: 'When the toolchain released'
+    required: false
+    default: '2020.08-1'
 runs:
   using: 'node12'
   main: 'dist/index.js'
