@@ -1917,13 +1917,13 @@ exports.replacer = (path) => __awaiter(void 0, void 0, void 0, function* () {
     var e_1, _a;
     core_1.info('Start replacing riscv64-buildroot-linux-gnu-* to riscv64-linux-gnu-*');
     const globber = yield glob.create(`${path}/riscv64-buildroot-*`, {
-        followSymbolicLinks: false
+        followSymbolicLinks: false,
     });
     try {
         for (var _b = __asyncValues(globber.globGenerator()), _c; _c = yield _b.next(), !_c.done;) {
             const bin = _c.value;
             core_1.info(`Replacing ${bin} ...`);
-            io_1.mv(bin, replace(bin), { force: true });
+            io_1.cp(bin, replace(bin), { force: true });
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }

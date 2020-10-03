@@ -14,14 +14,14 @@ export const getToolchain = async (date: string): Promise<string> => {
 
   info('Downloading...')
   const downloadPath = await tc.downloadTool(
-    `https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64/tarballs/riscv64--glibc--bleeding-edge-${date}.tar.bz2`
+    `https://toolchains.bootlin.com/downloads/releases/toolchains/riscv64/tarballs/riscv64--glibc--bleeding-edge-${date}.tar.bz2`,
   )
 
   info('Extracting...')
   const extractPath = await tc.extractTar(downloadPath, undefined, [
     'xz',
     '--strip',
-    '1'
+    '1',
   ])
 
   info('Adding to cache...')

@@ -21,4 +21,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
       - run: |
-          riscv-linux-gnu-gcc --version
+          riscv64-linux-gnu-gcc --version
